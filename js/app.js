@@ -65,7 +65,25 @@ class Interface {
         const leftover = document.querySelector('spam#restante')
         const budgetLeftoverUser = quantityBudget.budgetLeftover(expQua)
 
-        leftover.innerHTML = `${budgetLeftoverUser}`
+        leftover.innerHTML = `${budgetLeftoverUse}`
+
+        this.checkBudget()
+    }
+
+    checkBudget() {
+        const totalBudget = quantityBudget.budget
+        const restBudget = quantityBudget.leftover
+
+        if ((totalBudget / 4) > restBudget) {
+            const rest = document.querySelector('.restante')
+            rest.classList.remove('alert-success', 'alert-warning')
+            rest.classList.add('alert-danger')
+
+        } else if ((totalBudget / 2) > restBudget){
+            const rest = document.querySelector('.restante')
+            rest.classList.remove('alert-success')
+            rest.classList.add('alert-warning')
+        }
     }
 }
 
