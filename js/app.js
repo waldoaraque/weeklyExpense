@@ -45,8 +45,27 @@ class Interface {
         setTimeout(() => {
             document.querySelector('.primario .alert').remove()
         }, 3000)
+    }
 
-        
+    addExpenseList(name, expQua) {
+        const expenseList = document.getElementById('#gastos ul')
+
+        const li = document.createElement('li')
+        li.className = 'list-group-item d-flex justify-content-between align-items-center'
+
+        li.innerHTML = `
+            ${name}
+            <span class="badge badge-primary badge-pill">$ ${expQua} </span>
+        `
+
+        expenseList.appendChild(li)
+    }
+
+    budgetLeftover(expQua) {
+        const leftover = document.querySelector('spam#restante')
+        const budgetLeftoverUser = quantityBudget.budgetLeftover(expQua)
+
+        leftover.innerHTML = `${budgetLeftoverUser}`
     }
 }
 
@@ -72,6 +91,8 @@ form.addEventListener('submit', (e) => {
     if (expenseName === '' || expenseQuantity === '') {
         ui.handlerMessage('Hubo un error', 'error')
     } else {
-        
+        ui.handlerMessage('Correcto', 'correcto')
+        ui.addExpenseList(expenseName, expreseQuantity)
+        ui.budgetLeftover(expreseQuantity)
     }
 })
