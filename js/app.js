@@ -25,7 +25,7 @@ class Interface {
         const leftoverSpan = document.querySelector('span#restante')
 
         budgetSpan.innerHTML = `${quantity}`
-        leftoverSpan.innerHTML = `${}`
+        leftoverSpan.innerHTML = `${quantity}`
     }
 
     handlerMessage(m, t) {
@@ -48,7 +48,7 @@ class Interface {
     }
 
     addExpenseList(name, expQua) {
-        const expenseList = document.getElementById('#gastos ul')
+        const expenseList = document.querySelector('#gastos ul')
 
         const li = document.createElement('li')
         li.className = 'list-group-item d-flex justify-content-between align-items-center'
@@ -57,15 +57,15 @@ class Interface {
             ${name}
             <span class="badge badge-primary badge-pill">$ ${expQua} </span>
         `
-
+        
         expenseList.appendChild(li)
     }
 
     budgetLeftover(expQua) {
-        const leftover = document.querySelector('spam#restante')
+        const leftover = document.querySelector('span#restante')
         const budgetLeftoverUser = quantityBudget.budgetLeftover(expQua)
 
-        leftover.innerHTML = `${budgetLeftoverUse}`
+        leftover.innerHTML = `${budgetLeftoverUser}`
 
         this.checkBudget()
     }
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 form.addEventListener('submit', (e) => {
     e.preventDefault()
     const expenseName = document.querySelector('#gasto').value 
-    const expreseQuantity = document.querySelector('#cantidad').value 
+    const expenseQuantity = document.querySelector('#cantidad').value 
 
     const ui = new Interface()
 
@@ -110,7 +110,7 @@ form.addEventListener('submit', (e) => {
         ui.handlerMessage('Hubo un error', 'error')
     } else {
         ui.handlerMessage('Correcto', 'correcto')
-        ui.addExpenseList(expenseName, expreseQuantity)
-        ui.budgetLeftover(expreseQuantity)
+        ui.addExpenseList(expenseName, expenseQuantity)
+        ui.budgetLeftover(expenseQuantity)
     }
 })
